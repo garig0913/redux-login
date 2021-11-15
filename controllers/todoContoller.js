@@ -1,10 +1,10 @@
 const Todo = require('../model/todo');
 class TodoController {
-    addTodo(req, res){
+    addTodo(req, res) {
         const { taskName } = req.body;
         const todo = new Todo({
             taskName: taskName,
-            completed: false 
+            completed: false
         })
 
         todo.save()
@@ -17,7 +17,7 @@ class TodoController {
             .catch(err => console.log(err))
     }
 
-    getTodos(req, res){
+    getTodos(req, res) {
         Todo.find()
             .then(todos => {
                 res.json({
@@ -26,7 +26,7 @@ class TodoController {
             })
     }
 
-    deleteTodo(req, res){
+    deleteTodo(req, res) {
         const todoId = req.params.id;
         Todo.findByIdAndRemove(todoId)
             .then(result => {
@@ -37,9 +37,9 @@ class TodoController {
             })
     }
 
-    updateTodo(req, res){
+    updateTodo(req, res) {
         const todoId = req.params.id;
-        const {taskName} = req.body;
+        const { taskName } = req.body;
         Todo.findById(todoId)
             .then(result => {
                 result.taskName = taskName

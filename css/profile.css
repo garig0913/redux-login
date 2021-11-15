@@ -1,0 +1,8 @@
+.layer1 {
+  background-color: gray;
+}
+
+.layer2 {
+  background-image: url("../images/flowe.jpg");
+  opacity: 0.5;
+}

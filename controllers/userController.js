@@ -60,9 +60,12 @@ exports.deleteUser = (req, res) => {
 exports.login = (req, res) => {
     const username = req.body.username
     const password = req.body.password
-    ObjectID = MongoDb.ObjectID;
-    let id = new ObjectID();
-    console.log(id)
     User.findOne({ username: username })
-        .then(result => result._id.valueOf())
+        .then(result => {
+            if (result.password === password) {
+                res.json({ id: result._id.toString() })
+            } else {
+                res.json({ mes: 'wrong username or password' })
+            }
+        })
 }
